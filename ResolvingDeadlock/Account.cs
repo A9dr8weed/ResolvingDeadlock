@@ -6,25 +6,26 @@
     public class Account
     {
         /// <summary>
+        /// Account Id.
+        /// </summary>
+        public int Id { get; }
+
+        /// <summary>
+        /// Account description.
+        /// </summary>
+        public string Description { get; }
+
+        /// <summary>
         /// Account balance.
         /// </summary>
-        private double _balance;
+        public double Balance { get; set; }
 
-        /// <summary>
-        /// Account ID.
-        /// </summary>
-        private readonly int _id;
-
-        public Account(int id, double balance)
+        public Account(int id, string description, double balance)
         {
-            _id = id;
-            _balance = balance;
+            Id = id;
+            Description = description;
+            Balance = balance;
         }
-
-        /// <summary>
-        /// Public property.
-        /// </summary>
-        public int ID => _id;
 
         /// <summary>
         /// Withdraw money.
@@ -32,7 +33,7 @@
         /// <param name="amount"> Amount to withdraw. </param>
         public void Withdraw(double amount)
         {
-            _balance -= amount;
+            Balance -= amount;
         }
 
         /// <summary>
@@ -41,7 +42,7 @@
         /// <param name="amount"> Amount to deposit. </param>
         public void Deposit(double amount)
         {
-            _balance += amount;
+            Balance += amount;
         }
     }
 }

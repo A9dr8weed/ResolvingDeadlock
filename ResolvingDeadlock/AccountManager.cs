@@ -39,7 +39,7 @@ namespace ResolvingDeadlock
             object _lock1, _lock2;
 
             // If fromAccount is < toAccount.
-            if (_fromAccount.ID < _toAccount.ID)
+            if (_fromAccount.Id < _toAccount.Id)
             {
                 _lock1 = _fromAccount;
                 _lock2 = _toAccount;
@@ -50,26 +50,26 @@ namespace ResolvingDeadlock
                 _lock2 = _fromAccount;
             }
 
-            Console.WriteLine($"{Thread.CurrentThread.Name} trying to acquire lock on {((Account)_lock1).ID}");
+            Console.WriteLine($"{Thread.CurrentThread.Name} trying to acquire lock on {((Account)_lock1).Description}");
 
             lock (_lock1)
             {
-                Console.WriteLine($"{Thread.CurrentThread.Name} acquired lock on {((Account)_lock1).ID}");
+                Console.WriteLine($"{Thread.CurrentThread.Name} acquired lock on {((Account)_lock1).Description}");
 
                 Console.WriteLine($"{Thread.CurrentThread.Name} suspended for 1 second");
 
                 Thread.Sleep(1000);
 
-                Console.WriteLine($"{Thread.CurrentThread.Name} back in action and trying to acquire lock on {((Account)_lock2).ID}");
+                Console.WriteLine($"{Thread.CurrentThread.Name} back in action and trying to acquire lock on {((Account)_lock2).Description}");
 
                 lock (_lock2)
                 {
-                    Console.WriteLine($"{Thread.CurrentThread.Name} acquired lock on {((Account)_lock2).ID}");
+                    Console.WriteLine($"{Thread.CurrentThread.Name} acquired lock on {((Account)_lock2).Description}");
 
                     _fromAccount.Withdraw(_amountToTransfer);
                     _toAccount.Deposit(_amountToTransfer);
 
-                    Console.WriteLine($"{Thread.CurrentThread.Name} Transfered {_amountToTransfer} from {_fromAccount.ID} to {_toAccount.ID}");
+                    Console.WriteLine($"{Thread.CurrentThread.Name} Transfered {_amountToTransfer} from {_fromAccount.Description} to {_toAccount.Description}");
                 }
             }
         }
